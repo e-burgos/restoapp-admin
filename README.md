@@ -1,4 +1,32 @@
-# Getting Started with Create React App
+# Inicializando el proyecto con tailwind
+
+    1. Agregar dependencias 
+
+            npm i --save-dev autoprefixer postcss-cli tailwindcss postcss
+
+    2. Crear un archivo tailwind:
+
+            npx tailwind init tailwind.js
+
+    3. Crear en la raíz un archivo de configuración postcss.config.js para soportar clases css nuevas en todos los navegadores.
+
+    4. Crear una carpeta de estilos css en src, y agregar un archivo tailwind.css para importar estilos del framework.
+
+    5. En package.json agregar estos scripts para generar main.css de tailwind
+
+            "scripts": {
+                "start": "npm run watch:css && react-scripts start",
+                "build": "npm run build:css && react-scripts build",
+                "test": "react-scripts test",
+                "eject": "react-scripts eject",
+                "build:css": "postcss src/css/tailwind.css -o src/css/main.css",
+                "watch:css": "postcss src/css/tailwind.css -o src/css/main.css"
+            },
+
+    6. Reiniciar el proyecto y verificar que las clases estan funcionando correctamente en App.js por ejemplo. Si trabajas con VSC te recomiendo la extensión Tailwind CSS IntelliSense de Brad Cornes.
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

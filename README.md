@@ -25,6 +25,18 @@
 
    6. Reiniciar el proyecto y verificar que las clases estan funcionando correctamente en App.js por ejemplo. Si trabajas con VSC te recomiendo la extensión Tailwind CSS IntelliSense de Brad Cornes.
 
+
+## Dependencias Utilizadas
+
+            autoprefixer 
+            postcss-cli 
+            tailwindcss 
+            postcss
+            react-router-dom@next
+            react-router@next
+            react-router@next history
+
+
 ---
 
 ## Getting Started with Create React App

@@ -23,6 +23,7 @@ const Navigation = () => {
                         onClick={() => hideMenu()}
                         className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         activeClassName="text-purple-500"
+                        exact="true"
                         to="/"
                     >
                         <svg
@@ -47,6 +48,7 @@ const Navigation = () => {
                         onClick={() => hideMenu()} 
                         className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         activeClassName="text-purple-500"
+                        exact="true"
                         to="/menu"
                     >
                         <svg
@@ -71,6 +73,7 @@ const Navigation = () => {
                         onClick={() => hideMenu()}
                         className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         activeClassName="text-purple-500"
+                        exact="true"
                         to="/new-product"
                     >
                         <svg

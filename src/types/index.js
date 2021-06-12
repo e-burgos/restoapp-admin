@@ -1,0 +1,9 @@
+// Auth types
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'; 
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
+export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
+export const GET_USER = 'GET_USER';
+export const LOGOUT = 'LOGOUT';
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';

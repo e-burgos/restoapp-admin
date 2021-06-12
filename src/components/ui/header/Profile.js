@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UiContext from '../../../context/ui/uiContext';
+import AuthContext from '../../../context/auth/authContext';
 
 const Profile = () => {
 
+    // Get states and function from authState uiContext 
     const uiContext = useContext(UiContext);
     const { menuProfile, setMenuProfile, setMenuNotifications } = uiContext;
+
+    // Get states and function from authState
+    const authContext = useContext(AuthContext);
+    const { logoutUser } = authContext;
 
     const showMenu = () => {
         if(menuProfile){
@@ -15,7 +21,12 @@ const Profile = () => {
             setMenuProfile(true);
             setMenuNotifications(false);
         }
-    }
+    };
+
+    const logout = () => {
+        showMenu();
+        logoutUser();
+    };
 
     return ( 
         <>
@@ -41,7 +52,7 @@ const Profile = () => {
                         <li className="flex">
                             <Link
                                 onClick={() => showMenu()}
-                                to="/"
+                                to="/profile"
                                 className="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                             >
                                 <svg
@@ -64,7 +75,7 @@ const Profile = () => {
                         <li className="flex">
                             <Link
                                 onClick={() => showMenu()}
-                                to="/"
+                                to="/profile"
                                 className="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                             >
                                 <svg
@@ -87,8 +98,8 @@ const Profile = () => {
                         </li>
                         <li className="flex">
                             <Link
-                                onClick={() => showMenu()}
-                                to="/"
+                                onClick={() => logout()}
+                                to="/login"
                                 className="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                             >
                                 <svg

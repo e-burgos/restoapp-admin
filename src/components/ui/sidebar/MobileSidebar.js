@@ -11,7 +11,7 @@ const MobileSidebar = () => {
     <>      
         { sidebarMobile ?
             <>   
-            <div className="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+            <div className="fixed inset-0 z-10 shadow-md flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
             <aside className="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden">
                 <Navigation/>
             </aside>

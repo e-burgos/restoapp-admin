@@ -1,9 +1,11 @@
 import app from 'firebase/app';
 import firebaseConfig from './config';
+import 'firebase/auth';
 
 class Firebase {
     constructor(){
-        app.initializeApp(firebaseConfig)
+        app.initializeApp(firebaseConfig);
+        this.auth = app.auth();
     };
 };
 

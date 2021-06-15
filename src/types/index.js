@@ -7,3 +7,20 @@ export const GET_USER = 'GET_USER';
 export const LOGOUT = 'LOGOUT';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+
+// Products types
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
+export const PRODUCTS_ERROR = 'PRODUCTS_ERROR';   
+export const CLEAR_PRODUCTS_MESSAGE = 'CLEAR_PRODUCTS_MESSAGE'; 
+
+// Product categories types
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const FILTER_CATEGORIES = 'FILTER_CATEGORIES';
+

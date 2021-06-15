@@ -6,7 +6,7 @@ import AuthContext from '../../../context/auth/authContext';
 
 const Login = () => {
 
-    // Get states and function from authState
+    // Get states and function from authContext
     const authContext = useContext(AuthContext);
     const { auth, authMsg, errorMsg, loginUser, clearMessage } = authContext;
 
@@ -15,7 +15,7 @@ const Login = () => {
     useEffect(() => {
         if(auth){
             setTimeout(() => {
-                navigate('/');
+                navigate('/menu');
             }, 2000)
         }
     }, [auth, navigate])

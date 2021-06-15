@@ -1,8 +1,6 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
-    // REGISTRATION_SUCCESS,
-    // REGISTRATION_ERROR,
     LOGOUT,
     CLEAR_MESSAGE,
     GET_USER,
@@ -17,6 +15,7 @@ export default (state, action) => {
         case GET_USER:
         case REGISTRATION_SUCCESS:
         case LOGIN_SUCCESS:
+            localStorage.setItem('userId', action.payload.currentUser.uid);
             return {
                 ...state,
                 auth: true,

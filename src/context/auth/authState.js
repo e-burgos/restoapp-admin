@@ -39,6 +39,7 @@ const AuthState = props => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 getUser();
+                return user;
             } else {
                 logoutUser();
                 navigate('/login')

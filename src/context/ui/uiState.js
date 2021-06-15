@@ -7,6 +7,15 @@ const UiState = (props) => {
     const [sidebarMobile, setSidebarMobile] = useState(false);
     const [menuProfile, setMenuProfile] = useState(false);
     const [menuNotifications, setMenuNotifications] = useState(false);
+    const [submenu, setSubmenu] = useState(false);
+
+    const showSubmenu = () => {
+        if(submenu){
+            setSubmenu(false);
+        } else {
+            setSubmenu(true)
+        }
+    };
 
     return ( 
         <uiContext.Provider
@@ -14,9 +23,11 @@ const UiState = (props) => {
                 sidebarMobile: sidebarMobile,
                 menuProfile: menuProfile,
                 menuNotifications: menuNotifications,
+                submenu: submenu,
                 setSidebarMobile,
                 setMenuProfile,
-                setMenuNotifications
+                setMenuNotifications,
+                showSubmenu
             }}
         >
             {props.children}

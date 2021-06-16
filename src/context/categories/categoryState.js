@@ -102,19 +102,24 @@ const CategoryState = props => {
     }
 
     // Get all categories
-    const getCategories = async (userId) => {
-        let categories = [];
-        const categoriesRef = await firebase.firestore().collection('categories');
-        const snapshot = await categoriesRef.where('uid', '==', userId).get();
-        snapshot.forEach(doc => {
-            let {status, categoryName, description, uid, image } = doc.data();
-            categories.push({id: doc.id, status, categoryName, description, uid, image});
+    const getCategories = (userId) => {
+        const productsRef = firebase.firestore().collection('categories');
+        const query = productsRef.where('uid', '==', userId);
+        query.onSnapshot(handleSnapshot)
+    };
+
+    function handleSnapshot(snapshot){
+        const categories = snapshot.docs.map(doc => {
+            return ({
+                id: doc.id,
+                ...doc.data()
+            });
         });
-        categories.sort(dynamicSort("categoryName", 1))
+        categories.sort(dynamicSort("categoryName", 1));
         dispatch({
             type: GET_CATEGORIES,
             payload: categories
-        })
+        });
     };
 
     // Clear all alerts

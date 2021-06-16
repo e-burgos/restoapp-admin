@@ -102,19 +102,24 @@ const ProductState = props => {
     }
 
     // Get all products
-    const getProducts = async (userId) => {
-        let products = [];
-        const productsRef = await firebase.firestore().collection('products');
-        const snapshot = await productsRef.where('uid', '==', userId).get();
-        snapshot.forEach(doc => {
-            let {productName, price, stock, status, description, image, uid, category, categoryId} = doc.data();
-            products.push({id: doc.id, productName, price, stock, status, description, image, uid, category, categoryId});
+    const getProducts = (userId) => {
+        const productsRef = firebase.firestore().collection('products');
+        const query = productsRef.where('uid', '==', userId);
+        query.onSnapshot(handleSnapshot)
+    };
+
+    function handleSnapshot(snapshot){
+        const products = snapshot.docs.map(doc => {
+            return ({
+                id: doc.id,
+                ...doc.data()
+            });
         });
-        products.sort(dynamicSort("productName", 1))
+        products.sort(dynamicSort("productName", 1));
         dispatch({
             type: GET_PRODUCTS,
             payload: products
-        })
+        });
     };
 
     // Clear all alerts

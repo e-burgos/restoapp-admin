@@ -3,17 +3,26 @@ import productImage from '../../assets/img/product.png';
 
 const ProductCategory = ({product}) => {
     return ( 
-        <div className="min-w-0 p-4 bg-white border m-2 rounded-lg shadow-xs dark:bg-gray-800">
-          <img
-            className="rounded-lg mb-3" 
-            src={product.image !== "" ? product.image : productImage}
-            alt="product"
-          />
-            <h4 className="mr-2 text-xl font-semibold text-center mb-3 text-gray-600 dark:text-gray-300">{product.productName}</h4>
-
-          <p className="text-gray-600 text-sm text-center mb-3 dark:text-gray-400">{product.description}</p>
-          <h2 className="text-lg w-full text-center rounded-md font-semibold bg-purple-500 text-white dark:text-gray-200">${product.price}</h2>
-        </div>
+      <div className=" grid  p-2 antialiased text-gray-900">
+        <img src={product.image !== "" ? product.image : productImage} alt="product" className="w-full max-h-48  object-cover object-center rounded-lg shadow-md"/>    
+        <div className=" relative px-2 -mt-32">
+          <div className="bg-white pt-6 pb-6 pr-3 pl-3 rounded-lg shadow-lg opacity-90">
+            <div className="flex justify-between items-center">
+              <span className={`${product.stock > 0 ? 'bg-green-500' : 'bg-red-500'} text-white text-xs px-2 inline-block rounded-full uppercase font-semibold tracking-wide`}>
+                {product.stock > 0 ? 'Disponible' : 'Agotado'}
+              </span>
+              <div className="ml-2 text-gray-800 uppercase text-xl font-semibold tracking-wider">
+                ${product.price}
+              </div>  
+            </div>
+            <h4 className="mt-1 text-xl font-semibold text-center leading-tight">{product.productName}</h4>
+            
+            <div className="mt-4">
+              <p className="text-sm text-center text-gray-700">{product.description}</p>
+            </div>  
+          </div>
+        </div>    
+      </div>
      );
 }
  

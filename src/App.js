@@ -14,7 +14,8 @@ import Home from './components/pages/Home';
 import Menu from './components/pages/Menu';
 import Products from './components/pages/products/Products';
 import Orders from './components/pages/Orders';
-import UserProfile from './components/pages/UserProfile';
+import UserProfile from './components/pages/auth/UserProfile';
+import EditProfile from './components/pages/auth/EditProfile';
 import ForgotPassword from './components/pages/auth/ForgotPassword';
 import NewAccount from './components/pages/auth/NewAccount';
 import Login from './components/pages/auth/Login';
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/products" element={<Products/>} />
                 <Route path="/categories" element={<Categories/>} />
                 <Route path="/profile" element={<UserProfile/>} />
+                <Route path="/edit-profile" element={<EditProfile/>} />
                 <Route path="/forgot-password" element={<ForgotPassword/>} />
                 <Route path="/new-account" element={<NewAccount/>} />
                 <Route path="/login" element={<Login/>} />

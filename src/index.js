@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../src/css/main.css';
 import '../src/css/custom.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import 'linearicons';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

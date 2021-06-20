@@ -12,7 +12,9 @@ import {
     LOGOUT, 
     CLEAR_MESSAGE, 
     GET_USER,
+    UPDATE_USER,
     FORGOT_PASSWORD,
+    AUTH_MSG,
 } from '../../types';
 
 const AuthState = props => {
@@ -21,10 +23,22 @@ const AuthState = props => {
     const firebase = useFirebaseApp();
     const navigate = useNavigate();
 
+    const inicialUser = {
+        uid: null,
+        shopId: null,
+        displayName: null,
+        email: null,
+        photoURL: null,
+        emailVerified: false,
+        phoneNumber: null,
+        disabled: null,
+        admin: false
+    };
+
     // Initial state
     const initialState = {
         auth: false,
-        user: null,
+        user: inicialUser,
         authMsg: '',
         errorMsg: '',
         loading: true
@@ -49,9 +63,9 @@ const AuthState = props => {
 
     // Get current user
     const getUser = () => {
-        const user = firebase.auth().currentUser;
-        if(user){
-            const data = userData(user, 'Se obtuvo un usuario correctamente');
+        const currentUser = firebase.auth().currentUser;
+        if(currentUser){
+            const data = userData(currentUser, 'Se obtuvo un usuario correctamente');
             dispatch({
                 type: GET_USER,
                 payload: data
@@ -59,12 +73,14 @@ const AuthState = props => {
         } else {
             dispatch({
                 type: LOGIN_ERROR,
-                payload: 'No es posible obtener datos del usuario',
+                payload: {
+                    user: inicialUser,
+                    msg: 'No es posible obtener datos del usuario'
+                },
             })
         }
     };
 
-   
     // Login user
     const loginUser = async (email, password) => {
         try {
@@ -79,17 +95,20 @@ const AuthState = props => {
             console.log(error.message);
             dispatch({
                 type: LOGIN_ERROR,
-                payload: 'Los datos ingresados son incorrectos',
+                payload: {
+                    user: inicialUser,
+                    msg: 'Los datos ingresados son incorrectos'
+                },
             })
         }
     }
 
     // Regitration user
-    const registerUser = async (email, password, name) => {
+    const registerUser = async (email, password, displayName) => {
         try {
             await firebase.auth().createUserWithEmailAndPassword(email, password);
             const user = firebase.auth().currentUser;
-            await user.updateProfile({displayName: name});
+            await user.updateProfile({displayName: displayName});
             const data = userData(user, 'Registro existoso, te redigiremos a tu perfil');
             dispatch({
                 type: REGISTRATION_SUCCESS,
@@ -110,11 +129,12 @@ const AuthState = props => {
         }
     }
 
-    // Login user
+    // Logout user
     const logoutUser = async () => {
         await firebase.auth().signOut()
         dispatch({
-            type: LOGOUT
+            type: LOGOUT,
+            payload: inicialUser
         })
     }
 
@@ -136,8 +156,69 @@ const AuthState = props => {
             }
             dispatch({
                 type: LOGIN_ERROR,
-                payload: msg,
+                payload: {
+                    user: inicialUser,
+                    msg
+                },
             })
+        }
+    }
+
+    // Update user
+    const updateUser = async (data) => {
+        try {
+            const user = firebase.auth().currentUser;
+            await user.updateProfile({
+                displayName: data.displayName,
+                photoURL: data.photoURL
+            });
+            const updateUser = userData(user, 'El usuario se actualizo correctamente');
+            dispatch({
+                type: UPDATE_USER,
+                payload: updateUser,
+            })
+        } catch (error) {
+            console.log(error.message);
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: {
+                    user: inicialUser,
+                    msg: 'Los datos ingresados son incorrectos'
+                },
+            })
+        }
+    }
+
+    // Update password user
+    const updatePasswordUser = async (password) => {
+        try {
+            const user = firebase.auth().currentUser;
+            await user.updatePassword(password);
+            dispatch({
+                type: LOGOUT,
+            })
+        } catch (error) {
+            console.log(error.message);
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: {
+                    user: inicialUser,
+                    msg: 'Los datos ingresados son incorrectos'
+                },
+            })
+        }
+    }
+
+    // User email verification
+    const emailVerification = async () => {
+        try {
+            await firebase.auth().currentUser.sendEmailVerification();
+            dispatch({
+                type: AUTH_MSG,
+                payload: 'Por favor revisa tu correo para verificar tu email',
+            })
+        } catch (error) {
+            console.log(error.message);
         }
     }
 
@@ -146,11 +227,14 @@ const AuthState = props => {
         const data = {
             currentUser: {
                 uid: user.uid,
-                name: user.displayName,
+                shopId: user.shopId ? user.shopId : null,
+                displayName: user.displayName ? user.displayName : null,
                 email: user.email,
-                photoURL: user.photoURL,
-                emailVerified: user.emailVerified,
-                admin: false
+                photoURL: user.photoURL ? user.photoURL : null,
+                emailVerified: user.emailVerified ? user.emailVerified : false,
+                phoneNumber: user.phoneNumber ? user.phoneNumber : null,
+                disabled: user.disabled === undefined ? false : true,
+                admin: user.email === `${process.env.REACT_APP_ADMIN_EMAIL}` ? true : false,
             },
             msg: msg,
         };
@@ -173,11 +257,14 @@ const AuthState = props => {
                 errorMsg: state.errorMsg,
                 authUser,
                 getUser,
+                updateUser,
                 loginUser,
                 registerUser,
                 logoutUser,
                 forgotPassword,
                 clearMessage,
+                emailVerification,
+                updatePasswordUser,
             }}
         >
             {props.children}

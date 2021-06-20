@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UiContext from '../../../context/ui/uiContext';
 import AuthContext from '../../../context/auth/authContext';
+import ShopContext from '../../../context/shops/shopContext';
 import avatarImage from '../../../assets/img/avatar.png'
 
 const Profile = () => {
@@ -9,6 +10,10 @@ const Profile = () => {
     // Get states and function from authState uiContext 
     const uiContext = useContext(UiContext);
     const { menuProfile, setMenuProfile, setMenuNotifications } = uiContext;
+
+    // Get states and function from shopState
+    const shopContext = useContext(ShopContext);
+    const { clearShop } = shopContext;
 
     // Get states and function from authState
     const authContext = useContext(AuthContext);
@@ -27,6 +32,7 @@ const Profile = () => {
     const logout = () => {
         showMenu();
         logoutUser();
+        clearShop();
     };
 
     return ( 

@@ -22,14 +22,14 @@ const NewAccount = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: '',
+            displayName: '',
             email: '',
             password: '',
             repassword: '',
             check: false
         },
         validationSchema: Yup.object({
-            name: Yup.string()
+            displayName: Yup.string()
                         .required('Su nombre es obligatorio'),
             email: Yup.string()
                         .email('Debe ingresar un email válido')
@@ -44,7 +44,7 @@ const NewAccount = () => {
                         .oneOf([true],'Debe aceptar los terminos y condiciones')
         }),
         onSubmit: data => {
-            registerUser(data.email, data.password, data.name);
+            registerUser(data.email, data.password, data.displayName);
             setTimeout(() => {
                 clearMessage();
             }, 3000)
@@ -75,15 +75,15 @@ const NewAccount = () => {
                                     className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
                                     placeholder="ingrese su nombre completo"
                                     type="text"
-                                    id="name"
-                                    value={formik.values.name}
+                                    id="displayName"
+                                    value={formik.values.displayName}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
                             </label>
-                            {formik.touched.name && formik.errors.name ? (
+                            {formik.touched.name && formik.errors.displayName ? (
                                 <div className="block w-full mt-1 p-2 border-r-4 text-sm text-center text-white bg-red-500 border-red-600 outline-none shadow-outline-purple shadow-outline-gray">
-                                    <p>{formik.errors.name}</p>
+                                    <p>{formik.errors.displayName}</p>
                                 </div>
                             ) : null}
 

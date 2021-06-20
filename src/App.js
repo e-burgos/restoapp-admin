@@ -8,6 +8,7 @@ import UiState from './context/ui/uiState';
 import AuthState from './context/auth/authState';
 import CategoryState from './context/categories/categoryState';
 import ProductState from './context/products/productState';
+import ShopState from './context/shops/shopState';
 
 // Pages
 import Home from './components/pages/Home';
@@ -29,22 +30,24 @@ function App() {
     >
       <AuthState>
         <UiState>
-          <CategoryState>
-            <ProductState>
-              <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/orders" element={<Orders/>} />
-                <Route path="/menu" element={<Menu/>} />
-                <Route path="/products" element={<Products/>} />
-                <Route path="/categories" element={<Categories/>} />
-                <Route path="/profile" element={<UserProfile/>} />
-                <Route path="/edit-profile" element={<EditProfile/>} />
-                <Route path="/forgot-password" element={<ForgotPassword/>} />
-                <Route path="/new-account" element={<NewAccount/>} />
-                <Route path="/login" element={<Login/>} />
-              </Routes>
-          </ProductState>
-         </CategoryState>
+          <ShopState>
+            <CategoryState>
+              <ProductState>
+                <Routes>
+                  <Route path="/" element={<Home/>} />
+                  <Route path="/orders" element={<Orders/>} />
+                  <Route path="/menu" element={<Menu/>} />
+                  <Route path="/products" element={<Products/>} />
+                  <Route path="/categories" element={<Categories/>} />
+                  <Route path="/profile" element={<UserProfile/>} />
+                  <Route path="/edit-profile" element={<EditProfile/>} />
+                  <Route path="/forgot-password" element={<ForgotPassword/>} />
+                  <Route path="/new-account" element={<NewAccount/>} />
+                  <Route path="/login" element={<Login/>} />
+                </Routes>
+            </ProductState>
+          </CategoryState>
+         </ShopState>
         </UiState>
       </AuthState>
     </FirebaseAppProvider>

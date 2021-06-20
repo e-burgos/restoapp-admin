@@ -94,7 +94,12 @@ const ProductState = props => {
 
     // Filter products
     const filterProducts = (word) => {
-        let filterArray = state.products.filter(product => product.productName.includes(word));
+        let filterArray = state.products.filter(product => 
+            product.productName.includes(word) || 
+            product.description.includes(word) ||
+            product.category.includes(word)    ||
+            product.status.includes(word)
+        );
         dispatch({
             type: FILTER_PRODUCTS,
             payload: filterArray

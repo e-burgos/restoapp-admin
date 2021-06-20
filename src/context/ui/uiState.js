@@ -8,12 +8,21 @@ const UiState = (props) => {
     const [menuProfile, setMenuProfile] = useState(false);
     const [menuNotifications, setMenuNotifications] = useState(false);
     const [submenu, setSubmenu] = useState(false);
+    const [adminSubmenu, setAdminSubmenu] = useState(false);
 
     const showSubmenu = () => {
         if(submenu){
             setSubmenu(false);
         } else {
             setSubmenu(true)
+        }
+    };
+
+    const showAdminSubmenu = () => {
+        if(adminSubmenu){
+            setAdminSubmenu(false);
+        } else {
+            setAdminSubmenu(true)
         }
     };
 
@@ -24,10 +33,13 @@ const UiState = (props) => {
                 menuProfile: menuProfile,
                 menuNotifications: menuNotifications,
                 submenu: submenu,
+                adminSubmenu: adminSubmenu,
                 setSidebarMobile,
                 setMenuProfile,
                 setMenuNotifications,
-                showSubmenu
+                setAdminSubmenu,
+                showSubmenu,
+                showAdminSubmenu
             }}
         >
             {props.children}

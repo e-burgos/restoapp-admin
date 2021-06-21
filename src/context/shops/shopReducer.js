@@ -16,6 +16,8 @@ import {
 export default (state, action) => {
     switch (action.type) {
         case ADD_SHOP:
+        case UPDATE_SHOP:
+            localStorage.setItem('shopId', action.payload.data.id);
             return {
                 ...state,
                 currentShop: action.payload.data,
@@ -25,12 +27,6 @@ export default (state, action) => {
             return {
                 ...state,
                 shops: [action.payload.data, ...state.shops],
-                successShopMsg: action.payload.msg
-            };
-        case UPDATE_SHOP:
-            return {
-                ...state,
-                currentShop: action.payload.data,
                 successShopMsg: action.payload.msg
             };
         case ADMIN_UPDATE_SHOP:
@@ -52,6 +48,7 @@ export default (state, action) => {
                 shops: action.payload,
             }; 
         case GET_SHOP:
+            localStorage.setItem('shopId', action.payload.id);
             return {
                 ...state,
                 currentShop: action.payload,
@@ -69,6 +66,7 @@ export default (state, action) => {
                 errorShopMsg: '',
             };
         case CLEAR_SHOP:
+            localStorage.removeItem('shopId');
             return {
                 ...state, 
                 currentShop: action.payload,

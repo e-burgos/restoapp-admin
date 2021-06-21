@@ -8,7 +8,7 @@ const ProductSearcher = ({filterProducts, getProducts }) => {
         if(search !== ''){
             filterProducts(search);
         } else {
-            getProducts(localStorage.getItem('userId'))
+            getProducts(localStorage.getItem('shopId'))
         };
     // eslint-disable-next-line
     }, [search])

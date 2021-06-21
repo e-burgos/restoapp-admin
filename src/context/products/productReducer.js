@@ -14,7 +14,6 @@ export default (state, action) => {
         case ADD_PRODUCT:
             return {
                 ...state,
-                products: [action.payload.data, ...state.products],
                 successMsg: action.payload.msg
             };
         case UPDATE_PRODUCT:

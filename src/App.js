@@ -12,16 +12,16 @@ import ShopState from './context/shops/shopState';
 
 // Pages
 import Home from './components/pages/Home';
+import Dashboard from './components/pages/Dashboard';
 import Menu from './components/pages/Menu';
-import Products from './components/pages/products/Products';
+import Products from './components/pages/Products';
 import Orders from './components/pages/Orders';
 import UserProfile from './components/pages/auth/UserProfile';
 import EditProfile from './components/pages/auth/EditProfile';
 import ForgotPassword from './components/pages/auth/ForgotPassword';
 import NewAccount from './components/pages/auth/NewAccount';
 import Login from './components/pages/auth/Login';
-import Categories from './components/pages/products/Categories';
-//import PrivateRoute from './routes/privateRoute';
+import Categories from './components/pages/Categories';
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
               <ProductState>
                 <Routes>
                   <Route path="/" element={<Home/>} />
+                  <Route path="/dashboard" element={<Dashboard/>} />
                   <Route path="/orders" element={<Orders/>} />
                   <Route path="/menu" element={<Menu/>} />
                   <Route path="/products" element={<Products/>} />

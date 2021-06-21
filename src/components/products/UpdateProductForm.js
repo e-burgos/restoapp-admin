@@ -55,6 +55,7 @@ const UpdateProductFom = ({showUpdateForm, productToUpdate, firebase, categories
             let categorySelected = data.category.split('/');
             data.category = String(categorySelected[0]);
             data.categoryId = String(categorySelected[1]);
+            data.shopId = localStorage.getItem('shopId');
             updateProduct(data);
             showUpdateForm();
             setTimeout(() => {
@@ -154,7 +155,7 @@ const UpdateProductFom = ({showUpdateForm, productToUpdate, firebase, categories
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     >
-                        <option defaultValue={`${productToUpdate.category}/${productToUpdate.categoryId}`}>{productToUpdate.category}</option>
+
                         {categories.map(category => (
                             <option key={category.id} value={`${category.categoryName}/${category.id}`}>{category.categoryName}</option>
                         ))}

@@ -4,8 +4,12 @@ import UiContext from '../../../context/ui/uiContext';
 import AuthContext from '../../../context/auth/authContext';
 import ShopContext from '../../../context/shops/shopContext';
 import avatarImage from '../../../assets/img/avatar.png'
+import useAuth from '../../../hooks/useAuth';
 
 const Profile = () => {
+
+    // Hooks
+    const user = useAuth();
 
     // Get states and function from authState uiContext 
     const uiContext = useContext(UiContext);
@@ -46,7 +50,7 @@ const Profile = () => {
                 >
                     <img
                         className="object-cover w-8 h-8 rounded-full"
-                        src={avatarImage}
+                        src={user.photoURL ? user.photoURL : avatarImage}
                         alt="avatar"
                         aria-hidden="true"
                     />

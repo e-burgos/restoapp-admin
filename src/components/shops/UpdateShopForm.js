@@ -106,9 +106,9 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
         <div className="px-4 mb-6">
             <form
                 onSubmit={formik.handleSubmit}
-                className="flex flex-row flex-wrap justify-center"
+                className="flex flex-row flex-wrap"
             >
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Nombre Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -120,14 +120,14 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                         onBlur={formik.handleBlur}
                     />
                     {formik.touched.shopName && formik.errors.shopName ? (
-                        <div className="w-80 mt-1 p-2 border-r-4 text-sm text-center text-white bg-red-500 border-red-600 outline-none shadow-outline-purple shadow-outline-gray">
+                        <div className="w-full mt-1 p-2 border-r-4 text-sm text-center text-white bg-red-500 border-red-600 outline-none shadow-outline-purple shadow-outline-gray">
                             <p>{formik.errors.shopName}</p>
                         </div>
                     ) : null}
                 </label>
                 
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Dirección Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -145,7 +145,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                 ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Teléfono Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -163,7 +163,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Email Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -181,7 +181,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Estado Inicial*</span>
                     <select
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -201,7 +201,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Facebook</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -219,7 +219,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Instagram</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -237,7 +237,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Twitter</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -255,7 +255,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Whatsapp Comercial</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -273,7 +273,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     ) : null}
                 </label>
         
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Logotipo Comercial</span>
                     <FileUploader
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -318,7 +318,7 @@ const UpdateShopForm = ({showUpdateShopForm, firebase, updateShop, clearShopMess
                     <button
                         className="mr-2 block w-full px-4 py-2 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
                         type="submit"
-                    >Agregar</button>
+                    >Actualizar</button>
                     <button
                         onClick={() => showUpdateShopForm()}
                         className="ml-2 block w-full px-4 py-2 mt-8 text-sm font-medium leading-5 text-center text-gray-700 transition-colors duration-150 bg-gray-300 border border-transparent rounded-lg active:bg-white hover:bg-gray-400 focus:outline-none focus:shadow-outline-purple"

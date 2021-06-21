@@ -25,7 +25,6 @@ const AuthState = props => {
 
     const inicialUser = {
         uid: null,
-        shopId: null,
         displayName: null,
         email: null,
         photoURL: null,
@@ -227,7 +226,6 @@ const AuthState = props => {
         const data = {
             currentUser: {
                 uid: user.uid,
-                shopId: user.shopId ? user.shopId : null,
                 displayName: user.displayName ? user.displayName : null,
                 email: user.email,
                 photoURL: user.photoURL ? user.photoURL : null,

@@ -50,7 +50,7 @@ const ProductState = props => {
     const updateProduct = async data => {
         try {
             await firebase.firestore().collection('products').doc(data.id).update(data);
-
+            
             let updateProducts = state.products.filter(product => product.id !== data.id);
             updateProducts.push(data);
             updateProducts.sort(dynamicSort("productName", 1))
@@ -107,12 +107,20 @@ const ProductState = props => {
     }
 
     // Get all products
-    const getProducts = (userId) => {
+    const getProducts = (shopId) => {
         const productsRef = firebase.firestore().collection('products');
-        const query = productsRef.where('uid', '==', userId);
+        const query = productsRef.where('shopId', '==', shopId);
         query.onSnapshot(handleSnapshot)
     };
 
+    // Get active products
+    const getActiveProducts = (shopId) => {
+        const productsRef = firebase.firestore().collection('products');
+        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
+        query.onSnapshot(handleSnapshot)
+    };
+
+    // Get snapshots
     function handleSnapshot(snapshot){
         const products = snapshot.docs.map(doc => {
             return ({
@@ -156,6 +164,7 @@ const ProductState = props => {
                 destroyProduct,
                 clearMessage,
                 getProducts,
+                getActiveProducts,
                 filterProducts,
             }}
         >

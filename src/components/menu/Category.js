@@ -1,9 +1,11 @@
 import React from 'react';
 import ProductCategory from './ProductCategory';
 import categoryImage from '../../assets/img/category.png';
+import useActiveProducts from '../../hooks/useActiveProducts';
 
-const Category = ({category, activeProducts}) => {
+const Category = ({category}) => {
 
+  const activeProducts = useActiveProducts();
   const filterProducts = activeProducts.filter(product => product.categoryId === category.id)
 
     return ( 

@@ -5,7 +5,7 @@ const useAuth = () => {
 
     //Get state and function to verified if exist a user login
     const authContext = useContext(AuthContext);
-    const { auth, authUser } = authContext;
+    const { user, auth, authUser } = authContext;
 
     // Check status
     useEffect(() => {
@@ -13,7 +13,8 @@ const useAuth = () => {
             authUser();
         }
     }, [auth, authUser])
-    
+
+    return user;
 };
 
 export default useAuth;

@@ -14,7 +14,6 @@ export default (state, action) => {
         case ADD_CATEGORY:
             return {
                 ...state,
-                categories: [action.payload.data, ...state.categories],
                 successMsg: action.payload.msg
             };
         case UPDATE_CATEGORY:

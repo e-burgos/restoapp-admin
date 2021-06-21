@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import FileUploader from 'react-firebase-file-uploader';
 import categoryImage from '../../assets/img/category.png';
 
-const UpdateCategoryFom = ({showUpdateForm, categoryToUpdate, firebase, getCategories}) => {
+const UpdateCategoryFom = ({showUpdateForm, categoryToUpdate, firebase}) => {
 
     // Get states and function from categoryContext
     const categoryContext = useContext(CategoryContext);
@@ -41,6 +41,7 @@ const UpdateCategoryFom = ({showUpdateForm, categoryToUpdate, firebase, getCateg
             }
             data.uid = localStorage.getItem('userId');
             data.id = categoryToUpdate.id;
+            data.shopId = localStorage.getItem('shopId');
             updateCategory(data);
             showUpdateForm();
             setTimeout(() => {
@@ -104,7 +105,6 @@ const UpdateCategoryFom = ({showUpdateForm, categoryToUpdate, firebase, getCateg
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     >
-                        <option value="">Seleccione una opción</option>
                         <option value="active">Activa</option>
                         <option value="bloked">Bloqueada</option>
                     </select>

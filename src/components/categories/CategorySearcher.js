@@ -8,7 +8,7 @@ const CategorySearcher = ({filterCategories, getCategories }) => {
         if(search !== ''){
             filterCategories(search);
         } else {
-            getCategories(localStorage.getItem('userId'))
+            getCategories(localStorage.getItem('shopId'))
         };
     // eslint-disable-next-line
     }, [search])

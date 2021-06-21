@@ -101,9 +101,9 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
         <div className="px-4 mb-6">
             <form
                 onSubmit={formik.handleSubmit}
-                className="flex flex-row flex-wrap justify-center"
+                className="flex flex-row flex-wrap"
             >
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Nombre Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -115,14 +115,14 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                         onBlur={formik.handleBlur}
                     />
                     {formik.touched.shopName && formik.errors.shopName ? (
-                        <div className="w-80 mt-1 p-2 border-r-4 text-sm text-center text-white bg-red-500 border-red-600 outline-none shadow-outline-purple shadow-outline-gray">
+                        <div className="w-full mt-1 p-2 border-r-4 text-sm text-center text-white bg-red-500 border-red-600 outline-none shadow-outline-purple shadow-outline-gray">
                             <p>{formik.errors.shopName}</p>
                         </div>
                     ) : null}
                 </label>
                 
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Dirección Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -140,7 +140,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                 ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Teléfono Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -158,7 +158,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Email Comercial*</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -176,7 +176,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Estado Inicial*</span>
                     <select
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -197,7 +197,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Facebook</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -215,7 +215,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Instagram</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -233,7 +233,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Twitter</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -251,7 +251,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
                 
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Whatsapp Comercial</span>
                     <input
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"
@@ -269,7 +269,7 @@ const NewShopForm = ({showNewShopForm, firebase, addShop, clearShopMessage, curr
                     ) : null}
                 </label>
         
-                <label className="text-sm w-80 mx-2 mb-4 text-left">
+                <label className="text-sm xl:w-1/2 lg:w-1/2 w-full px-2 mb-4 text-left">
                     <span className="text-gray-700 dark:text-gray-400">Logotipo Comercial</span>
                     <FileUploader
                         className="block w-full mt-1 p-2 border-r-4 text-sm text-black border-gray-300 bg-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input"

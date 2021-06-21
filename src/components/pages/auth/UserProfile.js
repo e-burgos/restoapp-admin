@@ -1,7 +1,8 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import 'firebase/storage';
 import { useFirebaseApp } from 'reactfire';
 import useAuth from '../../../hooks/useAuth';
+import useShop from '../../../hooks/useShop';
 import AuthContext from '../../../context/auth/authContext';
 import ShopContext from '../../../context/shops/shopContext';
 import Sidebar from '../../ui/sidebar/Sidebar';
@@ -20,34 +21,24 @@ const UserProfile = () => {
     const firebase = useFirebaseApp();
 
     // Verified if exist a user login
-    useAuth();
+    const user = useAuth();
+
+    // Verified if exist a current shop
+    const currentShop = useShop();
 
     // Get states and function from shopContext
     const shopContext = useContext(ShopContext);
-    const { currentShop, getCurrentShop, addShop, updateShop, clearShopMessage, successShopMsg, errorShopMsg } = shopContext;
+    const { addShop, updateShop, clearShopMessage, successShopMsg, errorShopMsg } = shopContext;
 
     // Get states and function from authContext
     const authContext = useContext(AuthContext);
-    const { user, authMsg, errorMsg, updateUser, updatePasswordUser, logoutUser, emailVerification, clearMessage } = authContext;
+    const { authMsg, errorMsg, updateUser, updatePasswordUser, logoutUser, emailVerification, clearMessage } = authContext;
 
-    useEffect(() => {
-        if(user.uid !== null && currentShop.uid === null){
-            getCurrentShop(localStorage.getItem('userId'))
-        };
-        if(authMsg){
-            setTimeout(() => {
-                clearMessage()
-            }, 3000)
-        };
-    // eslint-disable-next-line
-    }, [user, currentShop, authMsg])
-    
-
+    // Forms states
     const [updateForm, setUpdateForm] = useState(false);
     const [passwordForm, setPasswordForm] = useState(false);
     const [shopForm, setShopForm] = useState(false);
     const [shopUpdateForm, setShopUpdateForm] = useState(false);
-
 
     const showUpdateForm = () => {
         if(updateForm){

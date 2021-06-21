@@ -49,6 +49,7 @@ const NewProductFom = ({showNewForm, firebase, categories}) => {
             let categorySelected = data.category.split('/');
             data.category = categorySelected[0];
             data.categoryId = categorySelected[1];
+            data.shopId = localStorage.getItem('shopId');
             addProduct(data);
             showNewForm();
             setTimeout(() => {

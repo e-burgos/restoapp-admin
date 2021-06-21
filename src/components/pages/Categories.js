@@ -1,47 +1,38 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import 'firebase/storage';
 import { useFirebaseApp } from 'reactfire';
-import ProductContext from '../../../context/products/productContext';
-import CategoryContext from '../../../context/categories/categoryContext';
-import Sidebar from '../../ui/sidebar/Sidebar';
-import Header from '../../ui/header/Header';
-import useAuth from '../../../hooks/useAuth';
-import ProductRecord from '../../products/ProductRecord';
-import FooterTable from '../../products/FooterTable';
-import NewProductForm from '../../products/NewProductForm';
-import UpdateProductForm from '../../products/UpdateProductForm';
-import DestroyProductForm from '../../products/DestroyProductForm';
-import ProductSearcher from '../../products/ProductSearcher';
+import Sidebar from '../ui/sidebar/Sidebar';
+import Header from '../ui/header/Header';
+import useAuth from '../../hooks/useAuth';
+import CategoryRecord from '../categories/CategoryRecord';
+import FooterTable from '../categories/FooterTable';
+import NewCategoryForm from '../categories/NewCategoryForm';
+import UpdateCategoryForm from '../categories/UpdateCategoryForm';
+import DestroyCategoryForm from '../categories/DestroyCategoryForm';
+import CategoryContext from '../../context/categories/categoryContext';
+import CategorySearcher from '../categories/CategorySearcher';
+import useCategories from '../../hooks/useCategories';
 
-const Products = () => {
+const Categories = () => {
     
     // Verified if exist a user login
     useAuth();
 
     // Hooks
     const firebase = useFirebaseApp();
-
-    // Get states and function from productContext
-    const productContext = useContext(ProductContext);
-    const { successMsg, errorMsg, products ,getProducts, filterProducts } = productContext;
+    const categories = useCategories();
 
     // Get states and function from categoryContext
     const categoryContext = useContext(CategoryContext);
-    const { categories, getCategories } = categoryContext;
+    const { successMsg, errorMsg, filterCategories, getCategories } = categoryContext;
 
     const [newform, setNewform] = useState(false);
     const [updateform, setUpdateform] = useState(false);
     const [destroyform, setDestroyform] = useState(false);
-    const [productToUpdate, setProductToUpdate] = useState({});
-    const [productToDestroy, setProductToDestroy] = useState({});
-
-    useEffect(() => {
-            getProducts(localStorage.getItem('userId'));
-            getCategories(localStorage.getItem('userId'));
-        // eslint-disable-next-line
-    }, []); 
-     
-    // Show/Hide new product form
+    const [categoryToUpdate, setCategoryToUpdate] = useState({});
+    const [categoryToDestroy, setCategoryToDestroy] = useState({});
+   
+    // Show/Hide new category form
     const showNewForm = () => {
         if(newform){
             setNewform(false);
@@ -54,8 +45,8 @@ const Products = () => {
         }
     } 
 
-    // Show/Hide update product form
-    const showUpdateForm = (product) => {
+    // Show/Hide update category form
+    const showUpdateForm = (category) => {
         if(updateform){
             setUpdateform(false);
             setUpdateform(false);
@@ -65,11 +56,11 @@ const Products = () => {
             setNewform(false);
             setDestroyform(false);
         }
-        setProductToUpdate(product);
+        setCategoryToUpdate(category);
     } 
 
-    // Show/Hide destroy product form
-    const showDestroyForm = (product) => {
+    // Show/Hide destroy category form
+    const showDestroyForm = (category) => {
         if(destroyform){
             setDestroyform(false);
             setUpdateform(false);
@@ -79,7 +70,7 @@ const Products = () => {
             setUpdateform(false);
             setNewform(false);
         }
-        setProductToDestroy(product);
+        setCategoryToDestroy(category);
     } 
 
     return ( 
@@ -89,11 +80,13 @@ const Products = () => {
                 <Header/>  
                 <main className="h-full pb-16 overflow-y-auto"> 
                     <div className="container px-6 mx-auto grid">
-                        <h1 className="my-6 text-3xl font-semibold text-gray-700 dark:text-gray-200">Productos</h1>
+                        <div className="flex flex-col items-start my-8">
+                            <h1 className="text-3xl font-bold uppercase text-gray-700 dark:text-gray-200">Categorias</h1>  
+                        </div>
                         <div className="flex items-center justify-between mb-4">
-                            <ProductSearcher
-                                filterProducts={filterProducts}
-                                getProducts={getProducts}
+                            <CategorySearcher
+                                filterCategories={filterCategories}
+                                getCategories={getCategories}
                             />
                             <button 
                                 className="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -102,31 +95,29 @@ const Products = () => {
                                 <svg className="h-5 w-5 mr-1 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>Agregar Producto</span>
+                                <span>Agregar Categoría</span>
                             </button>
                         </div>
 
                         {newform ? 
-                            <NewProductForm 
+                            <NewCategoryForm 
                                 showNewForm={showNewForm}
                                 firebase={firebase}
-                                categories={categories}
                             />
                         : null}
 
                         {updateform ? 
-                            <UpdateProductForm 
+                            <UpdateCategoryForm 
                                 showUpdateForm={showUpdateForm}
                                 firebase={firebase}
-                                productToUpdate={productToUpdate}
-                                categories={categories}
+                                categoryToUpdate={categoryToUpdate}
                             />
                         : null}
 
                         {destroyform ? 
-                            <DestroyProductForm 
+                            <DestroyCategoryForm 
                                 showDestroyForm={showDestroyForm}
-                                productToDestroy={productToDestroy}
+                                categoryToDestroy={categoryToDestroy}
                             />
                         : null}  
 
@@ -149,20 +140,17 @@ const Products = () => {
                                         <tr
                                         className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                                         >
-                                        <th className=""></th>
-                                        <th className="px-4 py-3">Producto</th>
-                                        <th className="px-4 py-3">Precio</th>
-                                        <th className="px-4 py-3">Estado</th>
-                                        <th className="px-4 py-3">Categoría</th>
+                                        <th className="px-4 py-3">Categoria</th>
                                         <th className="px-4 py-3">Descripción</th>
+                                        <th className="px-4 py-3">Estado</th>
                                         <th className="px-4 py-3">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        {products.sort().map( product => (
-                                            <ProductRecord
-                                                key={product.id}
-                                                product={product}
+                                        {categories.sort().map( category => (
+                                            <CategoryRecord
+                                                key={category.id}
+                                                category={category}
                                                 showUpdateForm={showUpdateForm}
                                                 showDestroyForm={showDestroyForm}
                                             />
@@ -170,7 +158,7 @@ const Products = () => {
                                     </tbody>
                                 </table>
                                 <FooterTable
-                                    products={products}
+                                    categories={categories}
                                 />
                             </div>
                         </div>
@@ -181,4 +169,4 @@ const Products = () => {
      );
 }
  
-export default Products;
+export default Categories;

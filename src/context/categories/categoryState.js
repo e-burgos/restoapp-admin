@@ -94,7 +94,11 @@ const CategoryState = props => {
 
     // Filter categories
     const filterCategories = (word) => {
-        let filterArray = state.categories.filter(category => category.categoryName.includes(word));
+        let filterArray = state.categories.filter(category => 
+            category.categoryName.includes(word) ||
+            category.status.includes(word) ||
+            category.description.includes(word)
+        );
         dispatch({
             type: FILTER_CATEGORIES,
             payload: filterArray
@@ -102,12 +106,20 @@ const CategoryState = props => {
     }
 
     // Get all categories
-    const getCategories = (userId) => {
+    const getCategories = (shopId) => {
         const productsRef = firebase.firestore().collection('categories');
-        const query = productsRef.where('uid', '==', userId);
+        const query = productsRef.where('shopId', '==', shopId);
         query.onSnapshot(handleSnapshot)
     };
 
+    // Get active categories
+    const getActiveCategories = (shopId) => {
+        const productsRef = firebase.firestore().collection('categories');
+        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
+        query.onSnapshot(handleSnapshot)
+    };
+
+    // Get snapshots
     function handleSnapshot(snapshot){
         const categories = snapshot.docs.map(doc => {
             return ({
@@ -150,6 +162,7 @@ const CategoryState = props => {
                 updateCategory,
                 destroyCategory,
                 getCategories,
+                getActiveCategories,
                 filterCategories,
                 clearMessage,
             }}

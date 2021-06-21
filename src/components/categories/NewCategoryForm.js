@@ -35,6 +35,7 @@ const NewCategoryFom = ({showNewForm, firebase}) => {
         onSubmit: data => {
             data.image = urlimage;
             data.uid = localStorage.getItem('userId');
+            data.shopId = localStorage.getItem('shopId');
             addCategory(data);
             showNewForm();
             setTimeout(() => {

@@ -9,6 +9,7 @@ import {
     DELETE_CATEGORY,
     FILTER_CATEGORIES,
     GET_CATEGORIES,
+    GET_ACTIVE_CATEGORIES,
     PRODUCTS_ERROR,
     CLEAR_PRODUCTS_MESSAGE,
 } from '../../types'
@@ -111,14 +112,6 @@ const CategoryState = props => {
         const query = productsRef.where('shopId', '==', shopId);
         query.onSnapshot(handleSnapshot)
     };
-
-    // Get active categories
-    const getActiveCategories = (shopId) => {
-        const productsRef = firebase.firestore().collection('categories');
-        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
-        query.onSnapshot(handleSnapshot)
-    };
-
     // Get snapshots
     function handleSnapshot(snapshot){
         const categories = snapshot.docs.map(doc => {
@@ -130,6 +123,27 @@ const CategoryState = props => {
         categories.sort(dynamicSort("categoryName", 1));
         dispatch({
             type: GET_CATEGORIES,
+            payload: categories
+        });
+    };
+
+    // Get active categories
+    const getActiveCategories = (shopId) => {
+        const productsRef = firebase.firestore().collection('categories');
+        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
+        query.onSnapshot(handleActiveSnapshot)
+    };
+    // Get active snapshots
+    function handleActiveSnapshot(snapshot){
+        const categories = snapshot.docs.map(doc => {
+            return ({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        categories.sort(dynamicSort("categoryName", 1));
+        dispatch({
+            type: GET_ACTIVE_CATEGORIES,
             payload: categories
         });
     };

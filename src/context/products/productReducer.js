@@ -3,6 +3,7 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_PRODUCTS,
+    GET_ACTIVE_PRODUCTS,
     FILTER_PRODUCTS,
     PRODUCTS_ERROR,
     CLEAR_PRODUCTS_MESSAGE
@@ -33,7 +34,11 @@ export default (state, action) => {
             return {
                 ...state,
                 products: action.payload,
-                activeProducts: action.payload.filter(product => product.status === 'active')
+            }; 
+        case GET_ACTIVE_PRODUCTS:
+            return {
+                ...state,
+                activeProducts: action.payload,
             }; 
         case PRODUCTS_ERROR:
             return {

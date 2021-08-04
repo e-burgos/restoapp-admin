@@ -3,6 +3,7 @@ import {
     UPDATE_CATEGORY,
     DELETE_CATEGORY,
     GET_CATEGORIES,
+    GET_ACTIVE_CATEGORIES,
     FILTER_CATEGORIES,
     PRODUCTS_ERROR,
     CLEAR_PRODUCTS_MESSAGE
@@ -33,7 +34,11 @@ export default (state, action) => {
             return {
                 ...state,
                 categories: action.payload,
-                activeCategories: action.payload.filter(category => category.status === 'active')
+            }; 
+        case GET_ACTIVE_CATEGORIES:
+            return {
+                ...state,
+                activeCategories: action.payload,
             }; 
         case PRODUCTS_ERROR:
             return {

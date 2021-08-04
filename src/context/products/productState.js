@@ -8,6 +8,7 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_PRODUCTS,
+    GET_ACTIVE_PRODUCTS,
     FILTER_PRODUCTS,
     PRODUCTS_ERROR,
     CLEAR_PRODUCTS_MESSAGE,
@@ -112,14 +113,6 @@ const ProductState = props => {
         const query = productsRef.where('shopId', '==', shopId);
         query.onSnapshot(handleSnapshot)
     };
-
-    // Get active products
-    const getActiveProducts = (shopId) => {
-        const productsRef = firebase.firestore().collection('products');
-        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
-        query.onSnapshot(handleSnapshot)
-    };
-
     // Get snapshots
     function handleSnapshot(snapshot){
         const products = snapshot.docs.map(doc => {
@@ -131,6 +124,27 @@ const ProductState = props => {
         products.sort(dynamicSort("productName", 1));
         dispatch({
             type: GET_PRODUCTS,
+            payload: products
+        });
+    };
+
+    // Get active products
+    const getActiveProducts = (shopId) => {
+        const productsRef = firebase.firestore().collection('products');
+        const query = productsRef.where('shopId', '==', shopId).where('status', '==', 'active');
+        query.onSnapshot(handleActiveSnapshot)
+    };
+    // Get active snapshots
+    function handleActiveSnapshot(snapshot){
+        const products = snapshot.docs.map(doc => {
+            return ({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        products.sort(dynamicSort("productName", 1));
+        dispatch({
+            type: GET_ACTIVE_PRODUCTS,
             payload: products
         });
     };

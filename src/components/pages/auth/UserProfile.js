@@ -34,6 +34,10 @@ const UserProfile = () => {
     const authContext = useContext(AuthContext);
     const { authMsg, errorMsg, updateUser, updatePasswordUser, logoutUser, emailVerification, clearMessage } = authContext;
 
+    setTimeout(() => {
+        clearMessage();
+    },2000)
+
     // Forms states
     const [updateForm, setUpdateForm] = useState(false);
     const [passwordForm, setPasswordForm] = useState(false);
@@ -43,32 +47,56 @@ const UserProfile = () => {
     const showUpdateForm = () => {
         if(updateForm){
             setUpdateForm(false);
+            setPasswordForm(false);
+            setShopForm(false);
+            setShopUpdateForm(false);
         } else {
             setUpdateForm(true);
+            setPasswordForm(false);
+            setShopForm(false);
+            setShopUpdateForm(false);
         };
     };
 
     const showUpdatePasswordForm = () => {
         if(passwordForm){
             setPasswordForm(false);
+            setUpdateForm(false);
+            setShopForm(false);
+            setShopUpdateForm(false);
         } else {
             setPasswordForm(true);
+            setUpdateForm(false);
+            setShopForm(false);
+            setShopUpdateForm(false);
         };
     };
 
     const showNewShopForm = () => {
         if(shopForm){
             setShopForm(false);
+            setUpdateForm(false);
+            setPasswordForm(false);
+            setShopUpdateForm(false);
         } else {
             setShopForm(true);
+            setUpdateForm(false);
+            setPasswordForm(false);
+            setShopUpdateForm(false);
         };
     };
 
     const showUpdateShopForm = () => {
         if(shopUpdateForm){
             setShopUpdateForm(false);
+            setUpdateForm(false);
+            setPasswordForm(false);
+            setShopForm(false);
         } else {
             setShopUpdateForm(true);
+            setUpdateForm(false);
+            setPasswordForm(false);
+            setShopForm(false);
         };
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import useAuth from '../../hooks/useAuth';
 import Sidebar from '../ui/sidebar/Sidebar';
 import Header from '../ui/header/Header';
@@ -6,6 +6,7 @@ import Category from '../menu/Category';
 import CreateShopCard from '../cards/CreateShopCard';
 import useShop from '../../hooks/useShop';
 import useActiveCategories from '../../hooks/useActiveCategories';
+import TableLoader from '../skeleton/TableLoader';
 
 const Menu = () => {
 
@@ -15,6 +16,14 @@ const Menu = () => {
     // Hooks
     const currentShop = useShop();
     const activeCategories = useActiveCategories();
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if(activeCategories) setLoading(true);
+    },[activeCategories])
+
+    console.log(loading)
 
     return ( 
         <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
@@ -32,12 +41,14 @@ const Menu = () => {
                             <CreateShopCard/>
                         : null}
                         
-                        {activeCategories.length !== 0 ? activeCategories.map(category => (
+                        {loading && activeCategories.length === 0 
+                        ?  <TableLoader />
+                        : activeCategories.map(category => (
                             <Category
                                 key={category.id}
                                 category={category}
                             />
-                        )) : null}
+                        ))}
                     </div>   
                 </main> 
             </div>
